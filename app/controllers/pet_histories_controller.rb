@@ -12,7 +12,7 @@ class PetHistoriesController < ApplicationController
   # GET /pet_histories/1.json
   def show
     @pet = Pet.find(params[:pet_id])
-    @pet_history = PetHistory.find(params[:id])
+    #@pet_history = PetHistory.find(params[:id])
   end
 
   # GET /pet_histories/new
@@ -24,7 +24,7 @@ class PetHistoriesController < ApplicationController
   # GET /pet_histories/1/edit
   def edit
     @pet = Pet.find(params[:pet_id])
-    @pet_history = PetHistory.find(params[:id])
+    #@pet_history = PetHistory.find(params[:id])
   end
 
   # POST /pet_histories
@@ -50,7 +50,7 @@ class PetHistoriesController < ApplicationController
   # PATCH/PUT /pet_histories/1.json
   def update
     @pet = Pet.find(params[:pet_id])
-    @pet_history = PetHistory.find(params[:id])
+    #@pet_history = PetHistory.find(params[:id])
     respond_to do |format|
       if @pet_history.update(pet_history_params.merge(pet: @pet))
         format.html { redirect_to pet_pet_history_path(@pet, @pet_history), notice: 'Pet history was successfully updated.' }
@@ -65,7 +65,7 @@ class PetHistoriesController < ApplicationController
   # DELETE /pet_histories/1
   # DELETE /pet_histories/1.json
   def destroy
-    @pet_history = PetHistory.find(params[:id])
+    #@pet_history = PetHistory.find(params[:id])
     @pet_history.destroy
 
     respond_to do |format|
