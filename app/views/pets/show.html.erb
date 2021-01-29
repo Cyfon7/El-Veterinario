@@ -20,7 +20,7 @@
     <p>
       <%= "<strong>Historia #{i+1}:</strong>".html_safe %>
       <%= data.weight %> kg -
-      <%= data.heigth %> cm
+      <%= data.height %> cm
     </p>
   <% end %>
 </p>
@@ -45,5 +45,6 @@
   </tbody>
 </table>
 
+<%= link_to 'Add History', pet_pet_histories_path(@pet) %> |
 <%= link_to 'Edit', edit_pet_path(@pet) %> |
 <%= link_to 'Back', pets_path %>

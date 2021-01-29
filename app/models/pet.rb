@@ -20,25 +20,40 @@ class Pet < ApplicationRecord
 
   def avg_weight
     #TODO-implement
-    avg_data = pet_histories.pluck(:weight)
-    avg_data.sum / avg_data.count
+    if pet_histories.exists?
+      avg_data = pet_histories.pluck(:weight)
+      avg_data.sum / avg_data.count
+    else
+      0
+    end
   end
 
   def avg_height
     #TODO-implement
-    byebug
-    avg_data = pet_histories.pluck(:height)
-    avg_data.sum / avg_data.count
+    if pet_histories.exists?
+      avg_data = pet_histories.pluck(:height)
+      avg_data.sum / avg_data.count
+    else
+      0
+    end
   end
 
   def max_weight
     #TODO-implement
-    pet_histories.pluck(:weight).max
+    if pet_histories.exists?
+      pet_histories.pluck(:weight).max
+    else
+      0
+    end
   end
 
   def max_height
     #TODO-implement
-    pet_histories.pluck(:heigth).max
+    if pet_histories.exists?
+      pet_histories.pluck(:height).max
+    else
+      0
+    end
   end
 
 end
