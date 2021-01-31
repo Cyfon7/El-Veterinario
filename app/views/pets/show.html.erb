@@ -45,6 +45,6 @@
   </tbody>
 </table>
 
-<%= link_to 'Add History', pet_pet_histories_path(@pet) %> |
-<%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= link_to 'Back', client_pets_path(@pet.client_id) %>
+<%= link_to 'Add History', pet_pet_histories_path(@pet), class: 'btn btn-primary' %>
+<%= link_to 'Edit', edit_pet_path(@pet), class: 'btn btn-primary' %>
+<%= link_to 'Back', client_pets_path(@pet.client_id), class: 'btn btn-primary' %>

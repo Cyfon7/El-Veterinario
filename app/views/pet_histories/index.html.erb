@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Pet Histories</h1>
+<h1 class="title_table">Pet Histories</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Weight</th>
@@ -28,5 +28,5 @@
 
 <br>
 
-<%= link_to 'New Pet History', new_pet_pet_history_path(@pet) %> |
-<%= link_to 'Back', @pet %>
+<%= link_to 'New Pet History', new_pet_pet_history_path(@pet), class: 'btn btn-primary' %>
+<%= link_to 'Back', @pet, class: 'btn btn-primary' %>
