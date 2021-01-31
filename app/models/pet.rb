@@ -1,5 +1,6 @@
 class Pet < ApplicationRecord
-  has_many :pet_histories
+  has_many :pet_histories, dependent: :destroy
+  validates :name, :race, :birthdate, presence: true
  
   def to_s
     name
@@ -13,7 +14,7 @@ class Pet < ApplicationRecord
   def history_list
     histories_links = []
     pet_histories.pluck(:id).each_with_index do |hist_id, i|
-      histories_links << "<a href='../pets/#{self.id}/pet_histories/#{hist_id}''>'History #{i+1}'</a>"
+      histories_links << "<a href='/pet_histories/#{hist_id}''>'History #{i+1}'</a>"
     end
     histories_links.join(", ").html_safe
   end

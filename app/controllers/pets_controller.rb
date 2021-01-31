@@ -1,19 +1,24 @@
 class PetsController < ApplicationController
+  before_action :set_client, only: [:index, :new, :create]
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /pets
   # GET /pets.json
   def index
-    @pets = Pet.all
+    #@client = Client.find(params[:client_id])
+    @pets = @client.pets
   end
 
   # GET /pets/1
   # GET /pets/1.json
   def show
+    #@client = Client.find(params[:client_id])
   end
 
   # GET /pets/new
   def new
+    #@client = Client.find(params[:client_id])
     @pet = Pet.new
   end
 
@@ -24,11 +29,13 @@ class PetsController < ApplicationController
   # POST /pets
   # POST /pets.json
   def create
+    #@client = Client.find(params[:client_id])
     @pet = Pet.new(pet_params)
 
+    @pet.client_id = @client.id
     respond_to do |format|
       if @pet.save
-        format.html { redirect_to @pet, notice: 'Pet was successfully created.' }
+        format.html { redirect_to pet_path(@pet), notice: 'Pet was successfully created.' }
         format.json { render :show, status: :created, location: @pet }
       else
         format.html { render :new }
@@ -40,9 +47,10 @@ class PetsController < ApplicationController
   # PATCH/PUT /pets/1
   # PATCH/PUT /pets/1.json
   def update
+    #@client = Client.find(params[:client_id])
     respond_to do |format|
       if @pet.update(pet_params)
-        format.html { redirect_to @pet, notice: 'Pet was successfully updated.' }
+        format.html { redirect_to pet_path(@pet), notice: 'Pet was successfully updated.' }
         format.json { render :show, status: :ok, location: @pet }
       else
         format.html { render :edit }
@@ -54,9 +62,10 @@ class PetsController < ApplicationController
   # DELETE /pets/1
   # DELETE /pets/1.json
   def destroy
+    aux_id = @pet.client_id
     @pet.destroy
     respond_to do |format|
-      format.html { redirect_to pets_url, notice: 'Pet was successfully destroyed.' }
+      format.html { redirect_to client_pets_path(client_id: aux_id), notice: 'Pet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +74,10 @@ class PetsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_pet
       @pet = Pet.find(params[:id])
+    end
+
+    def set_client
+      @client = Client.find(params[:client_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
